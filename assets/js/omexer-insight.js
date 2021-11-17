@@ -11,6 +11,8 @@
             var arrows = settings['arrows'];
             var dots = settings['dots'];
             var autoplay = settings['autoplay'];
+            var in_animation = settings['in_animation'];
+            var out_animation = settings['out_animation'];
             var centermode = settings['center_mode'];
             var autoplay_speed = parseInt(settings['autoplay_speed']) || 3000;
             var animation_speed = parseInt(settings['animation_speed']) || 3000;
@@ -29,8 +31,8 @@
                 autoplaySpeed: autoplay_speed,
                 smartSpeed:  animation_speed,
                 margin: 30,
-                animateOut: 'fadeOut',
-                animateIn: 'fadeIn',
+                animateOut: out_animation,
+                animateIn: in_animation,
                 responsive: {
                     0: {
                         items: mobile_display_items

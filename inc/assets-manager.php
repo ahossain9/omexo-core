@@ -73,6 +73,12 @@ class Assets {
             null,
             OMEXER_INSIGHT_VERSION
         );
+        wp_register_style(
+            'magnific-popup',
+            OMEXER_INSIGHT_ASSETS . 'css/animate.min.css',
+            null,
+            OMEXER_INSIGHT_VERSION
+        );
         
         wp_register_style(
             'omexer_insight-icons',
@@ -94,6 +100,7 @@ class Assets {
 		wp_enqueue_style( 'font-awesome' );
 		wp_enqueue_style( 'owl-carousel' );
 		wp_enqueue_style( 'magnific-popup' );
+		wp_enqueue_style( 'animate' );
 		wp_enqueue_style( 'omexer-insight-icons' );
 		wp_enqueue_style( 'omexer-insight' );
 
