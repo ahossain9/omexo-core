@@ -96,6 +96,7 @@ class Plugin {
             'video-popup',
             'mailchimp',
             'blog-post',
+            'slider',
             'countdown',
             'pricing-table',
             'testimonial-carousel',

@@ -2,6 +2,57 @@
     "use strict";
 
     /*-----------------------------------------------------
+       Slider
+    -------------------------------------------------------*/
+    var SliderHandler = function() {
+        var slider_elem = $('.slider');
+        if (slider_elem.length > 0) {
+            var settings = slider_elem.data('settings');
+            var arrows = settings['arrows'];
+            var dots = settings['dots'];
+            var autoplay = settings['autoplay'];
+            var centermode = settings['center_mode'];
+            var autoplay_speed = parseInt(settings['autoplay_speed']) || 3000;
+            var animation_speed = parseInt(settings['animation_speed']) || 3000;
+            var pause_on_hover = settings['pause_on_hover'];
+            var display_items = parseInt(settings['display_items']) || 3;
+            var tablet_display_items = parseInt(settings['tablet_display_items']) || 2;
+            var mobile_display_items = parseInt(settings['mobile_display_items']) || 1;
+            slider_elem.owlCarousel({
+                navText: ['<i class="fas fa-arrow-left"></i>', '<i class="fas fa-arrow-right"></i>'],
+                dots: dots,
+                loop: true,
+                nav: arrows,
+                autoplay: autoplay,
+                center: centermode,
+                autoplayHoverPause: pause_on_hover,
+                autoplaySpeed: autoplay_speed,
+                smartSpeed:  animation_speed,
+                margin: 30,
+                animateOut: 'fadeOut',
+                animateIn: 'fadeIn',
+                responsive: {
+                    0: {
+                        items: mobile_display_items
+                    },
+                    768: {
+                        items: tablet_display_items
+                    },
+                    991: {
+                        items: display_items
+                    },
+                    1200: {
+                        items: display_items
+                    },
+                    1920: {
+                        items: display_items
+                    }
+                }
+            });
+        }
+    }
+
+    /*-----------------------------------------------------
        Course Carousel
     -------------------------------------------------------*/
     var CourseCarouselHandler = function() {
@@ -206,6 +257,7 @@
     
     // Run this code under Elementor.
     $(window).on('elementor/frontend/init', function() {
+        elementorFrontend.hooks.addAction('frontend/element_ready/omexer-slider.default', SliderHandler);
         elementorFrontend.hooks.addAction('frontend/element_ready/omexer-countdown.default', CountDown);
         elementorFrontend.hooks.addAction('frontend/element_ready/omexer-course-carousel.default', CourseCarouselHandler);
         elementorFrontend.hooks.addAction('frontend/element_ready/omexer-testimonial-carousel.default', TestimonialHandler);
