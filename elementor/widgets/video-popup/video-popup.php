@@ -288,7 +288,7 @@ class Video_Popup extends Widget_Base {
                     $this->add_control(
                         'video_icon_background',
                         [
-                            'label' => __( 'Color', 'omexer-insight' ),
+                            'label' => __( 'Background Color', 'omexer-insight' ),
                             'type' => Controls_Manager::COLOR,
                             'selectors' => [
                                 '{{WRAPPER}} .video-popup-wrap a' => 'background-color: {{VALUE}}',

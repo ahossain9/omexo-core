@@ -117,7 +117,7 @@ class Slider extends Widget_Base {
         $repeater->add_control(
             'slider_title', [
                 'label'       => __( 'Title', 'omexer-insight' ),
-                'type'        => Controls_Manager::TEXT,
+                'type'        => Controls_Manager::TEXTAREA,
                 'default'     => __( 'Best Fashionable Digital Watch.', 'omexer-insight' ),
                 'label_block' => true,
             ]
@@ -131,17 +131,39 @@ class Slider extends Widget_Base {
             ]
         );
         $repeater->add_control(
-			'button_text', [
-				'label'       => __( 'Button Text', 'omexer-insight' ),
+			'left_button_text', [
+				'label'       => __( 'Left Button Text', 'omexer-insight' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => __( 'Shop Now' , 'omexer-insight' ),
+				'default'     => __( 'Button Text' , 'omexer-insight' ),
 				'label_block' => true,
 			]
 		);
 		$repeater->add_control(
-			'button_link',
+			'left_button_link',
 			[
-				'label'         => __( 'Button', 'plugin-domain' ),
+				'label'         => __( 'Left Button Url', 'plugin-domain' ),
+				'type'          => Controls_Manager::URL,
+				'placeholder'   => __( 'https://your-link.com', 'omexer-insight' ),
+				'show_external' => true,
+				'default' => [
+					'url' => '',
+					'is_external' => false,
+					'nofollow'    => false,
+				],
+			]
+		);
+        $repeater->add_control(
+			'right_button_text', [
+				'label'       => __( 'Right Button Text', 'omexer-insight' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Button Text' , 'omexer-insight' ),
+				'label_block' => true,
+			]
+		);
+		$repeater->add_control(
+			'right_button_link',
+			[
+				'label'         => __( 'Right Button Url', 'plugin-domain' ),
 				'type'          => Controls_Manager::URL,
 				'placeholder'   => __( 'https://your-link.com', 'omexer-insight' ),
 				'show_external' => true,
@@ -579,24 +601,13 @@ class Slider extends Widget_Base {
             ]
         );
         $this->add_responsive_control(
-            'slider_img_spacing',
+            'slider_img_padding',
             [
-                'label' => __( 'Sapcing', 'omexer-insight' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 200,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .slider-image' => 'margin-right: {{SIZE}}{{UNIT}}',
+                'label'      => __( 'Padding', 'omexer-insight' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%', 'em' ],
+                'selectors'  => [
+                    '{{WRAPPER}} .slider-image' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -665,7 +676,7 @@ class Slider extends Widget_Base {
             [
                 'label' => __( 'Background Overlay', 'omexer-insight' ),
                 'type' => Controls_Manager::SWITCHER,
-                'separator' => 'before',
+                // 'separator' => 'before',
                 'label_on' => __( 'Show', 'omexer-insight' ),
 				'label_off' => __( 'Hide', 'omexer-insight' ),
 				'return_value' => 'yes',
@@ -732,28 +743,6 @@ class Slider extends Widget_Base {
             ]
         );
         $this->add_responsive_control(
-            'slider_content_spacing',
-            [
-                'label' => __( 'Sapcing', 'omexer-insight' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 200,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .slider-content' => 'margin-left: {{SIZE}}{{UNIT}}',
-                ],
-            ]
-        );
-        $this->add_responsive_control(
             'content_width',
             [
                 'label'      => __( 'Width', 'omexer-insight' ),
@@ -811,7 +800,7 @@ class Slider extends Widget_Base {
                     'px' => [
                         'min' => 0,
                         'max' => 200,
-                        'step' => 5,
+                        'step' => 1,
                     ],
                     '%' => [
                         'min' => 0,
@@ -1003,7 +992,7 @@ class Slider extends Widget_Base {
                     'px' => [
                         'min' => 0,
                         'max' => 200,
-                        'step' => 5,
+                        'step' => 1,
                     ],
                     '%' => [
                         'min' => 0,
@@ -1192,7 +1181,7 @@ class Slider extends Widget_Base {
             [
                 'name' => 'slider_desc_typography',
                 'label' => __( 'Typography', 'omexer-insight' ),
-                'selector' => '{{WRAPPER}} .slider-description',
+                'selector' => '{{WRAPPER}} .slider-description,{{WRAPPER}} .slider-description p',
             ]
         );
         $this->add_responsive_control(
@@ -1205,7 +1194,7 @@ class Slider extends Widget_Base {
                     'px' => [
                         'min' => 0,
                         'max' => 200,
-                        'step' => 5,
+                        'step' => 1,
                     ],
                     '%' => [
                         'min' => 0,
@@ -1367,6 +1356,31 @@ class Slider extends Widget_Base {
             [
                 'label' => __( 'Button', 'omexer-insight' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_control(
+            'section_button_common_style',
+            [
+                'label'     => __( 'Common Style', 'omexer-insight' ),
+                'type'      => Controls_Manager::HEADING,
+            ]
+        );
+        $this->add_responsive_control(
+            'slider_btn_spacing',
+            [
+                'label'      => __( 'Spacing', 'omexer-insight' ),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => [ 'px'],
+                'range'  => [
+                    'px' => [
+                        'min'  => 0,
+                        'max'  => 100,
+                        'step' => 1,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slider-btn .slider_left_btn' => 'margin-right: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
         $this->add_group_control(
@@ -1625,6 +1639,74 @@ class Slider extends Widget_Base {
                 ]
             ]
         );
+        $this->add_control(
+            'section_right_button_style',
+            [
+                'label'     => __( 'Right Button', 'omexer-insight' ),
+                'type'      => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->start_controls_tabs(
+            'slider_right_button_tabs'
+        );
+            $this->start_controls_tab(
+                'slider_right_button_normal_tab',
+                [
+                    'label' => __( 'Normal', 'omexer-insight' ),
+                ]
+            );
+                $this->add_control(
+                    'slider_right_button_color',
+                    [
+                        'label'     => __( 'Color', 'omexer-insight' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .slider-btn .slider_right_btn' => 'color: {{VALUE}}'
+                        ],
+                    ]
+                );
+                $this->add_control(
+                    'slider_right_button_bg_color',
+                    [
+                        'label'     => __( 'Background Color', 'omexer-insight' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .slider-btn .slider_right_btn' => 'background-color: {{VALUE}}'
+                        ],
+                    ]
+                );
+            $this->end_controls_tab();
+
+            $this->start_controls_tab(
+                'slider_right_button_hover_tab',
+                [
+                    'label' => __( 'Hover', 'omexer-insight' ),
+                ]
+            );
+                $this->add_control(
+                    'slider_right_button_hover_color',
+                    [
+                        'label'     => __( 'Color', 'omexer-insight' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .slider-btn .slider_right_btn:hover' => 'color: {{VALUE}}'
+                        ],
+                    ]
+                );
+                $this->add_control(
+                    'slider_right_button_hover_bg_color',
+                    [
+                        'label'     => __( 'Background Color', 'omexer-insight' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .slider-btn .slider_right_btn:hover' => 'background-color: {{VALUE}}'
+                        ],
+                    ]
+                );
+
+            $this->end_controls_tab();
+        $this->end_controls_tabs();
         $this->end_controls_section();
         
         $this->start_controls_section(
@@ -1632,6 +1714,42 @@ class Slider extends Widget_Base {
             [
                 'label' => __( 'Navigation', 'omexer-insight' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_responsive_control(
+            'slider_left_arrow_spacing',
+            [
+                'label' => __( 'Left Arrow Spacing', 'omexer-insight' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                        'step' => 1,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slider.owl-carousel .owl-nav .owl-prev' => 'left: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'slider_right_arrow_spacing',
+            [
+                'label' => __( 'Right Arrow Spacing', 'omexer-insight' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                        'step' => 1,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slider.owl-carousel .owl-nav .owl-next' => 'right: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
         $this->add_responsive_control(
@@ -1751,6 +1869,60 @@ class Slider extends Widget_Base {
             [
                 'label' => __( 'Dots', 'omexer-insight' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_responsive_control(
+            'slider_dot_width',
+            [
+                'label' => __( 'Width', 'omexer-insight' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slider .owl-dots .owl-dot' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'slider_dot_height',
+            [
+                'label' => __( 'Height', 'omexer-insight' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slider .owl-dots .owl-dot' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'slider_dot_spacing',
+            [
+                'label' => __( 'Spacing', 'omexer-insight' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                        'step' => 1,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slider .owl-dots' => 'bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
         $this->start_controls_tabs(
@@ -1927,10 +2099,13 @@ class Slider extends Widget_Base {
                     </div>
                     <div class="slider-btn">
                       <?php
-                        $target = $slider_item['button_link']['is_external'] ? ' target="_blank"' : '';
-                        $nofollow = $slider_item['button_link']['nofollow'] ? ' rel="nofollow"' : '';
+                        $eft_btn_target = $slider_item['left_button_link']['is_external'] ? ' target="_blank"' : '';
+                        $left_btn_nofollow = $slider_item['left_button_link']['nofollow'] ? ' rel="nofollow"' : '';
+                        $right_btn_target = $slider_item['right_button_link']['is_external'] ? ' target="_blank"' : '';
+                        $right_btn_nofollow = $slider_item['right_button_link']['nofollow'] ? ' rel="nofollow"' : '';
                         ?>
-                        <a href="<?php echo esc_attr($slider_item['button_link']['url']);?>" <?php echo $target.' '.$nofollow;?>><?php echo esc_html($slider_item['button_text']);?></a>
+                        <a class="slider_left_btn" href="<?php echo esc_attr($slider_item['left_button_link']['url']);?>" <?php echo $eft_btn_target.' '.$left_btn_nofollow;?>><?php echo esc_html($slider_item['left_button_text']);?></a>
+                        <a class="slider_right_btn" href="<?php echo esc_attr($slider_item['right_button_link']['url']);?>" <?php echo $right_btn_target.' '.$right_btn_nofollow;?>><?php echo esc_html($slider_item['right_button_text']);?></a>
                     </div>
                 </div>
             </div>
