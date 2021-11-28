@@ -41,11 +41,15 @@ input[type="submit"] {
     position: relative
 }
 
-.slider-content {
+.slider-content.image {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 60%;
     flex: 0 0 60%;
     position: relative
+}
+
+.slider-content.image-none{
+    margin: 0 auto;
 }
 
 .slider-content h4 {

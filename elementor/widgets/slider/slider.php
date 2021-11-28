@@ -738,6 +738,7 @@ class Slider extends Widget_Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .slider-content' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .slider-content.image-none' => 'text-align: {{VALUE}};',
                 ],
                 'default'   => 'left',
             ]
@@ -760,7 +761,8 @@ class Slider extends Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .slider-content' => 'flex: 0 0 {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .slider-content.image' => 'flex: 0 0 {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .slider-content.image-none' => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -2087,7 +2089,7 @@ class Slider extends Widget_Base {
                     ?>
                 </div>
                 <?php endif;?>
-                <div class="slider-content">
+                <div class="slider-content <?php echo esc_attr($slider_item['slider_image']['url'] == '' ? 'image-none': 'image');?>">
                     <?php if ( !empty($slider_item['slider_sub_title'] )):?>
                     <h4><?php echo esc_html($slider_item['slider_sub_title']);?></h4>
                     <?php endif;?>
