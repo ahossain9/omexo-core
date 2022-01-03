@@ -3,7 +3,7 @@
  * Plugin Name: Omexer Insight
  * Plugin URI: https://omexer.com
  * Description: <a href="https://omexer.com">Omexer Insight</a> plugin is the collection of widgets for Elementor page builder
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Omexer
  * Author URI: https://omexer.com
  * License: GPLv2
