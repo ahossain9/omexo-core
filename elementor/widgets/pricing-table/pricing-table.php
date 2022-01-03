@@ -360,7 +360,7 @@ class Pricing_Table extends Widget_Base {
 						'text' => __( 'Exciting Feature', 'omexer-insight' ),
 					],
 				],
-				'title_field' => '<# print(haGetFeatureLabel(text)); #>',
+				'title_field' => '{{{ text }}}',
 			]
 		);
 
