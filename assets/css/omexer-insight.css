@@ -41,6 +41,11 @@ input[type="submit"] {
     position: relative
 }
 
+.slider-content{
+    position: relative;
+    z-index: 99;
+}
+
 .slider-content.image {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 60%;
