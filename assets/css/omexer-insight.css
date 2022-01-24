@@ -43,7 +43,7 @@ input[type="submit"] {
 
 .slider-content{
     position: relative;
-    z-index: 99;
+    z-index: 9;
 }
 
 .slider-content.image {
