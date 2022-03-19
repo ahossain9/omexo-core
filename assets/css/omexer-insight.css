@@ -27,7 +27,6 @@ input[type="submit"] {
     align-items: center;
     position: relative
 }
-
 .slider-single:before {
     content: '';
     position: absolute;
@@ -36,27 +35,22 @@ input[type="submit"] {
     width: 100%;
     height: 100%
 }
-
 .slider-image {
     position: relative
 }
-
 .slider-content{
     position: relative;
     z-index: 9;
 }
-
 .slider-content.image {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 60%;
     flex: 0 0 60%;
     position: relative
 }
-
 .slider-content.image-none{
     margin: 0 auto;
 }
-
 .slider-content h4 {
     font-size: 20px;
     line-height: 30px;
@@ -65,7 +59,6 @@ input[type="submit"] {
     text-transform: uppercase;
     color: #FF630E
 }
-
 .slider-content h2 {
     font-size: 65px;
     line-height: 75px;
@@ -159,7 +152,6 @@ input[type="submit"] {
     transition: 0.5s;
     background-color: #fff;
 }
-
 .course-header {
     position: relative;
 }
@@ -230,6 +222,20 @@ input[type="submit"] {
 .course-content-footer .course-user {
     float: right;
 }
+.tutor-star-rating-group {
+    color: #f4c150;
+    display: inline-block;
+    text-align: left;
+}
+.course-rating .tutor-star-rating-group i {
+    font-size: 20px;
+    line-height: 30px;
+}
+.course-rating .course-rating-count {
+    font-size: 17px;
+    line-height: 30px;
+}
+
 /*----------------------------------------------------
    Course Carousel
 ------------------------------------------------------*/
