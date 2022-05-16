@@ -51,7 +51,7 @@ class Pricing_Table extends Widget_Base {
         ];
     }
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
         //Header Sections
 		$this->start_controls_section(
