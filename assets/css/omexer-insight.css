@@ -155,7 +155,6 @@ input[type="submit"] {
 .course-header {
     position: relative;
 }
-
 .course-difficulty-level {
     position: absolute;
     left: 0;
@@ -169,26 +168,30 @@ input[type="submit"] {
     margin-left: 15px;
     border-radius: 4px;
 }
-
 .course-content {
     padding: 30px 25px 20px;
 }
-
 .course-price{
     margin-bottom: 15px;
 }
-
+.course-card .course-price del {
+    margin-right: 10px;
+}
+.course-card .course-price del span {
+    text-decoration: line-through;
+}
+.course-card .course-price ins {
+    background: transparent;
+}
 .course-price span {
     color: #FF630E;
     font-weight: 700;
     font-size: 22px;
     display: inline-block;
 }
-
 .course-title{
     margin-bottom: 10px;
 }
-
 .course-title a {
     color: #130f40;
     display: inline-block;
@@ -196,29 +199,23 @@ input[type="submit"] {
     font-size: 26px;
     line-height: 36px;
 }
-
 .course-title a:hover{
     color: #FF630E;
 }
-
 .course-content-footer li{
     display: inline-block;
 }
-
 .content-footer .course-duration{
     margin-right: 100px;
 }
-
 .course-content-footer {
     border-top: 1px solid #e6f0fa;
     padding-top: 20px;
     margin-top: 25px;
 }
-
 .course-content-footer li i{
     display: inline-block;
 }
-
 .course-content-footer .course-user {
     float: right;
 }
