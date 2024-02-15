@@ -285,7 +285,6 @@ class Course_Grid extends Widget_Base
             ]
         );
 
-
         $this->add_control(
             'global_background_color',
             [

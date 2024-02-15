@@ -256,6 +256,19 @@
         }
 
     }
+
+    /*---------------------------------------------------
+         Mobile Menu
+    ----------------------------------------------------*/
+    var ResponsiveMenu = function () {
+        $(".omexo-nav-menu-wrap .nav-menu").slicknav({
+            allowParentLinks: true,
+            prependTo: '#responsive-menu-wrap',
+            label: '',
+            closedSymbol: '',
+            openedSymbol:''
+        });
+    }
     
     // Run this code under Elementor.
     $(window).on('elementor/frontend/init', function() {
@@ -266,5 +279,6 @@
         elementorFrontend.hooks.addAction('frontend/element_ready/omexer-skill-bar.default', SkillHandler);
         elementorFrontend.hooks.addAction('frontend/element_ready/omexer-accordian.default', AccordionHandler);
         elementorFrontend.hooks.addAction('frontend/element_ready/omexer-video-popup.default', VideoPopupHandler);   
+        elementorFrontend.hooks.addAction('frontend/element_ready/omexer-nav-menu.default', ResponsiveMenu);   
     });
 })(jQuery);
