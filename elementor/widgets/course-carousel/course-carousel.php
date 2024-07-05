@@ -42,7 +42,7 @@ class Course_Carousel extends Widget_Base {
         ];
     }
 
-	protected function _register_controls() {
+	protected function register_controls() {
 
         $this->start_controls_section(
             'section_query',
@@ -867,29 +867,6 @@ class Course_Carousel extends Widget_Base {
             );
 
             $this->add_responsive_control(
-                'course_meta_spacing',
-                [
-                    'label' => __( 'Spacing', 'omexer-insight' ),
-                    'type' => Controls_Manager::SLIDER,
-                    'size_units' => [ 'px','%' ],
-                    'range' => [
-                        'px' => [
-                            'min' => 0,
-                            'max' => 500,
-                            'step' => 1,
-                        ],
-                        '%' => [
-                            'min' => 0,
-                            'max' => 100,
-                        ],
-                    ],
-                    'selectors' => [
-                        '{{WRAPPER}} .course-content-footer .course-duration' => 'margin-right: {{SIZE}}{{UNIT}};',
-                    ],
-                ]
-            );
-
-            $this->add_responsive_control(
                 'course_meta_icon_size',
                 [
                     'label' => __( 'Icon Size', 'omexer-insight' ),
@@ -1349,8 +1326,8 @@ class Course_Carousel extends Widget_Base {
                     <?php if('yes' == $settings['course_meta_switcher']):?>
                     <div class="course-content-footer">
                         <ul>
-                            <li class="course-duration"><i class="fas tutor-icon-clock"></i> <?php echo $course_duration;?></li>
-                            <li class="course-user"><i class="fas tutor-icon-user"></i> <?php echo $course_students;?></li>
+                            <li class="course-duration"><i class="fa fa-clock-o"></i> <?php echo $course_duration;?></li>
+                            <li class="course-user"><i class="fa fa-user-o"></i> <?php echo $course_students;?></li>
                         </ul>
                     </div>
                     <?php endif;?>

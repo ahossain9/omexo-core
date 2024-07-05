@@ -957,7 +957,7 @@ class Blog_Post extends Widget_Base {
                             <li><a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><i class="fa fa-user"></i><?php echo esc_html( get_the_author() ); ?></a></li>
                         <?php endif; ?>
                         <?php if( $settings['date_switcher'] == 'yes' ): ?>
-                            <li><a href="<?php echo esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ); ?>"><i class="fa fa-calendar"></i>20 Oct, 2020</a></li>
+                            <li><a href="<?php echo esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ); ?>"><i class="fa fa-calendar"></i><?php echo esc_html(get_the_date());?></a></li>
                         <?php endif; ?>   
                     </ul>
                     <h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>

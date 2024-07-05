@@ -47,7 +47,7 @@ class Testimonial_Carousel extends Widget_Base {
         ];
     }
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'content_section',
 			[
@@ -631,7 +631,7 @@ class Testimonial_Carousel extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'testi_content_typography',
-                'selector' => '{{WRAPPER}} .testi-content',
+                'selector' => '{{WRAPPER}} .testi-content p',
             ]
         );
         $this->add_responsive_control(

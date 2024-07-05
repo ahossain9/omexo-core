@@ -53,6 +53,7 @@ class Plugin {
 
          // Register custom category
         add_action( 'elementor/elements/categories_registered', [ $this, 'add_category' ] );
+        add_action( 'elementor/elements/categories_registered', [ $this, 'add_category_two' ] );
     }
     
     /**
@@ -65,6 +66,16 @@ class Plugin {
             'omexer_insight',
             [
                 'title' => __( 'Omexer Insight', 'omexer_insight-core' ),
+                'icon' => 'fa fa-smile-o',
+            ]
+        );
+    }
+
+    public function add_category_two( $elements_manager ) {
+        $elements_manager->add_category(
+            'omexer_insight_cat_two',
+            [
+                'title' => __( 'Omexer Header & Footer', 'omexer_insight-core' ),
                 'icon' => 'fa fa-smile-o',
             ]
         );
@@ -105,6 +116,10 @@ class Plugin {
             'skill-bar',
             'accordian',
             'step-flow',
+            'nav-menu',
+            'site-logo',
+            'mini-cart',
+            'nav-category'
         ];
 
         if ( function_exists('tutor') ) {

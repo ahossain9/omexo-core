@@ -11,6 +11,8 @@
             var arrows = settings['arrows'];
             var dots = settings['dots'];
             var autoplay = settings['autoplay'];
+            var in_animation = settings['in_animation'];
+            var out_animation = settings['out_animation'];
             var centermode = settings['center_mode'];
             var autoplay_speed = parseInt(settings['autoplay_speed']) || 3000;
             var animation_speed = parseInt(settings['animation_speed']) || 3000;
@@ -19,7 +21,7 @@
             var tablet_display_items = parseInt(settings['tablet_display_items']) || 2;
             var mobile_display_items = parseInt(settings['mobile_display_items']) || 1;
             slider_elem.owlCarousel({
-                navText: ['<i class="fas fa-arrow-left"></i>', '<i class="fas fa-arrow-right"></i>'],
+                navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
                 dots: dots,
                 loop: true,
                 nav: arrows,
@@ -29,8 +31,8 @@
                 autoplaySpeed: autoplay_speed,
                 smartSpeed:  animation_speed,
                 margin: 30,
-                animateOut: 'fadeOut',
-                animateIn: 'fadeIn',
+                animateOut: out_animation,
+                animateIn: in_animation,
                 responsive: {
                     0: {
                         items: mobile_display_items
@@ -254,6 +256,19 @@
         }
 
     }
+
+    /*---------------------------------------------------
+         Mobile Menu
+    ----------------------------------------------------*/
+    var ResponsiveMenu = function () {
+        $(".omexo-nav-menu-wrap .nav-menu").slicknav({
+            allowParentLinks: true,
+            prependTo: '#responsive-menu-wrap',
+            label: '',
+            closedSymbol: '',
+            openedSymbol:''
+        });
+    }
     
     // Run this code under Elementor.
     $(window).on('elementor/frontend/init', function() {
@@ -264,5 +279,6 @@
         elementorFrontend.hooks.addAction('frontend/element_ready/omexer-skill-bar.default', SkillHandler);
         elementorFrontend.hooks.addAction('frontend/element_ready/omexer-accordian.default', AccordionHandler);
         elementorFrontend.hooks.addAction('frontend/element_ready/omexer-video-popup.default', VideoPopupHandler);   
+        elementorFrontend.hooks.addAction('frontend/element_ready/omexer-nav-menu.default', ResponsiveMenu);   
     });
 })(jQuery);

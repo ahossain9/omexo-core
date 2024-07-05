@@ -43,7 +43,7 @@ class Category_Image_Box extends Widget_Base {
         ];
     }
 
-	protected function _register_controls() {
+	protected function register_controls() {
 	
 		$this->start_controls_section(
 			'section_cat_image',
