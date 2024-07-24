@@ -66,9 +66,13 @@ class Course_Grid extends Widget_Base
                 'label' => __('Style', 'omexer-insight'),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    '1' => __('Layout 1', 'omexer-insight')
+                    'layout-one'   => __('Layout 1', 'omexer-insight'),
+                    'layout-two'   => __('Layout 2', 'omexer-insight'),
+                    'layout-three' => __('Layout 3', 'omexer-insight'),
+                    'layout-four'  => __('Layout 4', 'omexer-insight'),
+                    'layout-five'  => __('Layout 5', 'omexer-insight'),
                 ],
-                'default' => '1',
+                'default' => 'layout-one',
             ]
         );
 
@@ -84,6 +88,9 @@ class Course_Grid extends Widget_Base
                     '3' => __('4', 'omexer-insight'),
                 ],
                 'default' => '4',
+                'condition' => [
+                    'layout_style' => ['layout-one', 'layout-two'],
+                ]
             ]
         );
 
@@ -194,14 +201,58 @@ class Course_Grid extends Widget_Base
         );
 
         $this->add_control(
-            'course_meta_switcher',
+            'course_enroll',
             [
-                'label' => __('Meta', 'omexer-insight'),
+                'label' => __('Enroll', 'omexer-insight'),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __('Show', 'omexer-insight'),
                 'label_off' => __('Hide', 'omexer-insight'),
                 'return_value' => 'yes',
                 'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'course_enroll_label',
+            [
+                'label'   => __('Enroll Label', 'omexer-insight'),
+                'type'    => Controls_Manager::TEXT,
+                'default' => 'Enroll',
+                'condition' => [
+                    'course_enroll' => 'yes',
+                    'layout_style' => 'layout-two',
+                    'layout_style' => 'layout-three'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'course_duration_switcher',
+            [
+                'label' => __('Duration', 'omexer-insight'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'omexer-insight'),
+                'label_off' => __('Hide', 'omexer-insight'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'condition' => [
+                    'layout_style' => ['layout-one', 'layout-two']
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'category_switcher',
+            [
+                'label' => __('Category', 'omexer-insight'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'omexer-insight'),
+                'label_off' => __('Hide', 'omexer-insight'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'condition' => [
+                    'layout_style' => 'layout-two'
+                ]
             ]
         );
 
@@ -388,7 +439,7 @@ class Course_Grid extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .course-thumbnail img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .course-thumbnail img,.course-thumbnail a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -423,7 +474,6 @@ class Course_Grid extends Widget_Base
             ]
         );
 
-
         $this->add_control(
             'course_title_color',
             [
@@ -434,7 +484,6 @@ class Course_Grid extends Widget_Base
                 ],
             ]
         );
-
 
         $this->end_controls_tab();
 
@@ -501,6 +550,143 @@ class Course_Grid extends Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .course-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
+            ]
+        );
+
+        $this->add_control(
+            'course_duration',
+            [
+                'label' => __('Duration', 'omexer-insight'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'course_duration_switcher' => 'yes',
+                    'layout_style' => 'layout-two'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'course_duration_icon_size',
+            [
+                'label' => __('Icon Size', 'omexer-insight'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .course-card.layout-two .course-duration' => 'font-size: {{SIZE}}{{UNIT}};'
+                ],
+                'condition' => [
+                    'course_duration_switcher' => 'yes',
+                    'layout_style' => 'layout-two'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'course_duration_icon_spacing',
+            [
+                'label' => __('Icon Spacing', 'omexer-insight'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 20,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .course-card.layout-two .course-duration i' => 'margin-right: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'course_duration_switcher' => 'yes',
+                    'layout_style' => 'layout-two'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'course_duration_text_color',
+            [
+                'label' => __('Color', 'omexer-insight'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}}  .course-card.layout-two .course-duration, .course-card.layout-two .course-duration .tutor-color-secondary' => 'color: {{VALUE}}'
+                ],
+                'condition' => [
+                    'course_duration_switcher' => 'yes',
+                    'layout_style' => 'layout-two'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'course_duration_icon_color',
+            [
+                'label' => __('Icon Color', 'omexer-insight'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}}  .course-card.layout-two .course-duration i' => 'color: {{VALUE}}'
+                ],
+                'condition' => [
+                    'course_duration_switcher' => 'yes',
+                    'layout_style' => 'layout-two'
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'course_duration_typography',
+                'label' => __('Typography', 'omexer-insight'),
+                'selector' => '{{WRAPPER}} .course-card.layout-two .course-duration',
+                'condition' => [
+                    'course_duration_switcher' => 'yes',
+                    'layout_style' => 'layout-two'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'course_duration_spacing',
+            [
+                'label' => __('Icon Spacing', 'omexer-insight'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .course-card.layout-two .course-duration' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'course_duration_switcher' => 'yes',
+                    'layout_style' => 'layout-two'
+                ]
             ]
         );
 
@@ -812,7 +998,7 @@ class Course_Grid extends Widget_Base
                 'label' => __('Meta', 'omexer-insight'),
                 'tab'   => Controls_Manager::TAB_STYLE,
                 'condition' => [
-                    'course_meta_switcher' => 'yes'
+                    'layout_style' => 'layout-one'
                 ]
             ]
         );
@@ -974,68 +1160,219 @@ class Course_Grid extends Widget_Base
             <div class="course-list-wrap row">
                 <?php
                 while ($the_query->have_posts()) : $the_query->the_post();
-                    $course_duration = get_tutor_course_duration_context();
-                    $course_students = tutor_utils()->count_enrolled_users_by_course();
-                    $course_students = !empty($course_students) ? $course_students : 0;
-                    $course_rating = tutor_utils()->get_course_rating();
-                    $review_count = $course_rating->rating_count > 1 ? 'Reviews' : 'Review';
+                    global $post;
+                    $course_duration   = get_tutor_course_duration_context();
+                    $course_students   = tutor_utils()->count_enrolled_users_by_course();
+                    $course_students   = !empty($course_students) ? $course_students : 0;
+                    $course_rating     = tutor_utils()->get_course_rating();
+                    $review_count      = $course_rating->rating_count > 1 ? 'Reviews' : 'Review';
+                    $course_id         = $post->ID;
+                    $course_categories = get_tutor_course_categories($course_id);
                 ?>
-                    <div class="col-lg-<?php echo esc_attr($settings['layout_columns']); ?> col-sm-6">
-                        <div class="course-card course-card-<?php echo esc_attr(get_the_ID()); ?>">
-                            <div class="course-header">
-                                <?php if ("yes" == $settings['course_difficulty_level']) : ?>
-                                    <span class="course-difficulty-level"><?php echo esc_html(get_tutor_course_level()); ?></span>
-                                <?php endif; ?>
-                                <?php if (has_post_thumbnail()) : ?>
-                                    <div class="course-thumbnail">
-                                        <a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_post_thumbnail(); ?></a>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="course-content">
-                                <?php if ('yes' == $settings['course_pricing_switcher']) : ?>
-                                    <div class="course-price">
-                                        <?php
-                                        $course_id = get_the_ID();
-                                        $price_html = '<span>' . __('Free', 'omexer-insignt') . '</span>';
-                                        if (tutor_utils()->is_course_purchasable()) {
-                                            $product_id = tutor_utils()->get_course_product_id($course_id);
-                                            $product    = wc_get_product($product_id);
-                                            if ($product) {
-                                                $price_html = '<span> ' . $product->get_price_html() . '</span> ';
-                                            }
-                                        }
-                                        echo $price_html;
-                                        ?>
-                                    </div>
-                                <?php endif; ?>
-                                <div class="course-title">
-                                    <h3><a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_title(); ?></a></h3>
+                    <!-- Start Layout One -->
+                    <?php if ($settings['layout_style'] == 'layout-one') : ?>
+                        <div class="col-lg-<?php echo esc_attr($settings['layout_columns']); ?> col-sm-6">
+                            <div class="course-card course-card-<?php echo esc_attr(get_the_ID()); ?>">
+                                <div class="course-header">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <div class="course-thumbnail">
+                                            <a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_post_thumbnail(); ?></a>
+                                            <?php if ("yes" == $settings['course_difficulty_level']) : ?>
+                                                <span class="course-difficulty-level"><?php echo esc_html(get_tutor_course_level()); ?></span>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
-                                <?php if ('yes' == $settings['course_rating_switcher']) : ?>
-                                    <div class="course-rating">
-                                        <?php
-
-                                        tutor_utils()->star_rating_generator($course_rating->rating_avg);
-                                        ?>
-                                        <span class="course-rating-count">
+                                <div class="course-content">
+                                    <?php if ('yes' == $settings['course_pricing_switcher']) : ?>
+                                        <div class="course-price">
                                             <?php
-                                            echo '<span>(' . apply_filters('tutor_course_rating_count', $course_rating->rating_count) . ' <span>' . $review_count . ')</span></span>';
+                                            $course_id = get_the_ID();
+                                            $price_html = '<span>' . __('Free', 'omexer-insignt') . '</span>';
+                                            if (tutor_utils()->is_course_purchasable()) {
+                                                $product_id = tutor_utils()->get_course_product_id($course_id);
+                                                $product    = wc_get_product($product_id);
+                                                if ($product) {
+                                                    $price_html = '<span> ' . $product->get_price_html() . '</span> ';
+                                                }
+                                            }
+                                            echo $price_html;
                                             ?>
-                                        </span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="course-title">
+                                        <h3><a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_title(); ?></a></h3>
                                     </div>
-                                <?php endif; ?>
-                                <?php if ('yes' == $settings['course_meta_switcher']) : ?>
-                                    <div class="course-content-footer">
-                                        <ul>
-                                            <li class="course-duration"><i class="fa fa-clock-o"></i> <?php echo $course_duration; ?></li>
-                                            <li class="course-user"><i class="fa fa-user-o"></i> <?php echo $course_students; ?></li>
-                                        </ul>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php if ('yes' == $settings['course_rating_switcher']) : ?>
+                                        <div class="course-rating">
+                                            <?php
+
+                                            tutor_utils()->star_rating_generator($course_rating->rating_avg);
+                                            ?>
+                                            <span class="course-rating-count">
+                                                <?php
+                                                echo '<span>(' . apply_filters('tutor_course_rating_count', $course_rating->rating_count) . ' <span>' . $review_count . ')</span></span>';
+                                                ?>
+                                            </span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ('yes' == $settings['course_duration_switcher'] || 'yes' == $settings['course_enroll']) : ?>
+                                        <div class="course-content-footer">
+                                            <ul>
+                                                <?php if ('yes' == $settings['course_duration_switcher']) : ?>
+                                                    <li class="course-duration"><i class="fa fa-clock-o"></i> <?php echo $course_duration; ?></li>
+                                                <?php endif; ?>
+                                                <?php if ('yes' == $settings['course_enroll']) : ?>
+                                                    <li class="course-user"><i class="fa fa-user-o"></i> <?php echo $course_students; ?></li>
+                                                <?php endif; ?>
+                                            </ul>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
+                    <!-- End Layout One -->
+                    <!-- Start Layout Two -->
+                    <?php if ($settings['layout_style'] == 'layout-two') : ?>
+                        <div class="col-lg-<?php echo esc_attr($settings['layout_columns']); ?> col-sm-6">
+                            <div class="course-card layout-two course-card-<?php echo esc_attr(get_the_ID()); ?>">
+                                <div class="course-header">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <div class="course-thumbnail">
+                                            <a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_post_thumbnail(); ?></a>
+                                            <?php if ("yes" == $settings['course_difficulty_level']) : ?>
+                                                <span class="course-difficulty-level"><?php echo esc_html(get_tutor_course_level()); ?></span>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="course-content">
+                                    <?php if (!empty($course_categories) && is_array($course_categories) && count($course_categories) && ($settings['category_switcher'] == 'yes')) : ?>
+                                        <div class="course-categories">
+                                            <?php
+                                            $category_links = array();
+                                            foreach ($course_categories as $course_category) :
+                                                $category_name    = $course_category->name;
+                                                $category_link    = get_term_link($course_category->term_id);
+                                                $category_links[] = wp_sprintf('<a href="%1$s">%2$s</a>', esc_url($category_link), esc_html($category_name));
+                                            endforeach;
+                                            echo implode(' ', $category_links); //phpcs:ignore --contain safe data
+                                            ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ('yes' == $settings['course_duration_switcher']) : ?>
+                                        <span class="course-duration"><i class="fa fa-clock-o"></i> <?php echo $course_duration; ?></span>
+                                    <?php endif; ?>
+                                    <div class="course-title">
+                                        <h3><a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_title(); ?></a></h3>
+                                    </div>
+                                    <?php if ('yes' == $settings['course_rating_switcher']) : ?>
+                                        <div class="course-rating">
+                                            <?php
+                                            tutor_utils()->star_rating_generator($course_rating->rating_avg);
+                                            ?>
+                                            <span class="course-rating-count">
+                                                <?php
+                                                echo '<span>(' . apply_filters('tutor_course_rating_count', $course_rating->rating_count) . ' <span>' . $review_count . ')</span></span>';
+                                                ?>
+                                            </span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ('yes' == $settings['course_pricing_switcher'] || 'yes' == $settings['course_enroll']) : ?>
+                                        <div class="course-content-footer">
+                                            <?php if ('yes' == $settings['course_pricing_switcher']) : ?>
+                                                <span class="course-price">
+                                                    <?php
+                                                    $course_id = get_the_ID();
+                                                    $price_html = '<span>' . __('Free', 'omexer-insignt') . '</span>';
+                                                    if (tutor_utils()->is_course_purchasable()) {
+                                                        $product_id = tutor_utils()->get_course_product_id($course_id);
+                                                        $product    = wc_get_product($product_id);
+                                                        if ($product) {
+                                                            $price_html = '<span> ' . $product->get_price_html() . '</span> ';
+                                                        }
+                                                    }
+                                                    echo $price_html;
+                                                    ?>
+                                                </span>
+                                            <?php endif; ?>
+                                            <?php if ('yes' == $settings['course_enroll']) : ?>
+                                                <span class="course-user"><i class="fa fa-user-o"></i> <?php echo $course_students; ?>
+                                                    <?php if (!empty($settings['course_enroll_label'])) : ?>
+                                                        <span class="enrolled-label"> <?php echo esc_html__($settings['course_enroll_label'], 'omexer-insight'); ?></span>
+                                                    <?php endif; ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <!-- Start Layout Two -->
+                    <!-- Start Layout Three -->
+                    <?php if ($settings['layout_style'] == 'layout-three') : ?>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="course-card layout-three course-card-<?php echo esc_attr(get_the_ID()); ?>">
+                                <div class="course-card-inner">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <div class="course-thumbnail">
+                                            <a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_post_thumbnail(); ?></a>
+                                            <?php if ("yes" == $settings['course_difficulty_level']) : ?>
+                                                <span class="course-difficulty-level"><?php echo esc_html(get_tutor_course_level()); ?></span>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="course-content">
+                                        <div class="course-title">
+                                            <h3><a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_title(); ?></a></h3>
+                                        </div>
+                                        <?php if ('yes' == $settings['course_rating_switcher']) : ?>
+                                            <div class="course-rating">
+                                                <?php
+                                                tutor_utils()->star_rating_generator($course_rating->rating_avg);
+                                                ?>
+                                                <span class="course-rating-count">
+                                                    <?php
+                                                    echo '<span>(' . apply_filters('tutor_course_rating_count', $course_rating->rating_count) . ' <span>' . $review_count . ')</span></span>';
+                                                    ?>
+                                                </span>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ('yes' == $settings['course_pricing_switcher'] || 'yes' == $settings['course_enroll']) : ?>
+                                            <div class="course-content-footer">
+                                                <?php if ('yes' == $settings['course_pricing_switcher']) : ?>
+                                                    <span class="course-price">
+                                                        <?php
+                                                        $course_id = get_the_ID();
+                                                        $price_html = '<span>' . __('Free', 'omexer-insignt') . '</span>';
+                                                        if (tutor_utils()->is_course_purchasable()) {
+                                                            $product_id = tutor_utils()->get_course_product_id($course_id);
+                                                            $product    = wc_get_product($product_id);
+                                                            if ($product) {
+                                                                $price_html = '<span> ' . $product->get_price_html() . '</span> ';
+                                                            }
+                                                        }
+                                                        echo $price_html;
+                                                        ?>
+                                                    </span>
+                                                <?php endif; ?>
+                                                <?php if ('yes' == $settings['course_enroll']) : ?>
+                                                    <span class="course-user"><i class="fa fa-user-o"></i> <?php echo $course_students; ?>
+                                                        <?php if (!empty($settings['course_enroll_label'])) : ?>
+                                                            <span class="enrolled-label"> <?php echo esc_html__($settings['course_enroll_label'], 'omexer-insight'); ?></span>
+                                                        <?php endif; ?>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <!-- Start Layout Three -->
                 <?php
                 endwhile;
                 wp_reset_postdata();
