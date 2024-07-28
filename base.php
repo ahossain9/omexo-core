@@ -118,6 +118,7 @@ class Plugin {
             'accordian',
             'step-flow',
             'spinning-image',
+            'text-scroller',
             'nav-menu',
             'site-logo',
             'mini-cart',
