@@ -22,7 +22,7 @@ class Dynamic_Course_Category extends Widget_Base
 
 	public function get_name()
 	{
-		return 'omexer-dynamic-course-category';
+		return 'omexer-.dynamic-course-category';
 	}
 
 	public function get_title()
@@ -62,10 +62,9 @@ class Dynamic_Course_Category extends Widget_Base
 		$this->add_control(
 			'course_category',
 			[
-				'label' => __('Select Category', 'mesonix-core'),
+				'label' => __('Select Category', 'omexer-insight'),
 				'type' => Controls_Manager::SELECT,
 				'options' => $this->course_category(),
-				// 'multiple' => false,
 			]
 		);
 
@@ -92,6 +91,7 @@ class Dynamic_Course_Category extends Widget_Base
 						'icon' => 'eicon-v-align-top',
 					]
 				],
+				'default' => 'left'
 			]
 		);
 		$this->add_control(
@@ -108,20 +108,35 @@ class Dynamic_Course_Category extends Widget_Base
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'section_content',
+			'section_options',
 			[
-				'label' => __('Content', 'omexer-insight'),
+				'label' => __('Options', 'omexer-insight'),
 			]
 		);
 
 		$this->add_control(
-			'cat_title',
+			'label_switcher',
 			[
-				'label' => __('Category Name', 'omexer-insight'),
+				'label' => __('Course Number Label', 'omexer-insight'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __('Show', 'omexer-insight'),
+				'label_off' => __('Hide', 'omexer-insight'),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+
+		$this->add_control(
+			'label_text',
+			[
+				'label' => __('Label Text', 'omexer-insight'),
 				'type' => Controls_Manager::TEXT,
-				'default' => __('Web Design', 'omexer-insight'),
-				'placeholder' => __('Enter category title', 'omexer-insight'),
+				'default' => __('Courses', 'omexer-insight'),
+				'placeholder' => __('Enter course number label text', 'omexer-insight'),
 				'label_block' => true,
+				'condition' => [
+					'label_switcher' => 'yes'
+				]
 			]
 		);
 		$this->end_controls_section();
@@ -140,7 +155,7 @@ class Dynamic_Course_Category extends Widget_Base
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'separator' => 'before',
 			]
@@ -161,7 +176,7 @@ class Dynamic_Course_Category extends Widget_Base
 				'label' => __('Background Color', 'omexer-insight'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -170,7 +185,7 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'cat_icon_global_border',
-				'selector' => '{{WRAPPER}} .course-category-icon-box'
+				'selector' => '{{WRAPPER}} .dynamic-course-category'
 			]
 		);
 
@@ -178,7 +193,7 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'cat_icon_global_shadow',
-				'selector' => '{{WRAPPER}} .course-category-icon-box',
+				'selector' => '{{WRAPPER}} .dynamic-course-category',
 			]
 		);
 
@@ -197,7 +212,7 @@ class Dynamic_Course_Category extends Widget_Base
 				'label' => __('Background Color', 'omexer-insight'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category:hover' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -206,7 +221,7 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'cat_icon_global_hover_border',
-				'selector' => '{{WRAPPER}} .course-category-icon-box:hover',
+				'selector' => '{{WRAPPER}} .dynamic-course-category:hover',
 			]
 		);
 
@@ -214,7 +229,7 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'cat_icon_hover_global_shadow',
-				'selector' => '{{WRAPPER}} .course-category-icon-box:hover',
+				'selector' => '{{WRAPPER}} .dynamic-course-category:hover',
 			]
 		);
 
@@ -229,7 +244,7 @@ class Dynamic_Course_Category extends Widget_Base
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%', 'em'],
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'separator' => 'before',
 			]
@@ -252,7 +267,7 @@ class Dynamic_Course_Category extends Widget_Base
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', 'em', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon span' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category-icon span' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'separator' => 'before',
 			]
@@ -273,8 +288,8 @@ class Dynamic_Course_Category extends Widget_Base
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box.left .course-category-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .course-category-icon-box.top .course-category-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category.left .dynamic-course-category-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category.top .dynamic-course-category-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -291,8 +306,8 @@ class Dynamic_Course_Category extends Widget_Base
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box i' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .course-category-icon-box svg' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category svg' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -313,8 +328,8 @@ class Dynamic_Course_Category extends Widget_Base
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon i' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .course-category-icon svg' => 'fill: {{VALUE}}; color: {{VALUE}}; border-color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category-icon i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category-icon svg' => 'fill: {{VALUE}}; color: {{VALUE}}; border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -325,8 +340,8 @@ class Dynamic_Course_Category extends Widget_Base
 				'label' => __('Background Color', 'omexer-insight'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon span' => 'background-color: {{VALUE}};',
-					'{{WRAPPER}} .course-category-icon span' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category-icon span' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category-icon span' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -335,7 +350,7 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'cat_icon_border',
-				'selector' => '{{WRAPPER}} .course-category-icon i',
+				'selector' => '{{WRAPPER}} .dynamic-course-category-icon i',
 			]
 		);
 
@@ -346,8 +361,8 @@ class Dynamic_Course_Category extends Widget_Base
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .course-category-icon-box span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -356,7 +371,7 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'cat_icon_box_shadow',
-				'selector' => '{{WRAPPER}} .course-category-icon span',
+				'selector' => '{{WRAPPER}} .dynamic-course-category-icon span',
 			]
 		);
 
@@ -375,8 +390,8 @@ class Dynamic_Course_Category extends Widget_Base
 				'label' => __('Color', 'omexer-insight'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon span:hover i' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .course-category-icon span:hover svg' => 'fill: {{VALUE}}; color: {{VALUE}}; border-color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category-icon span:hover i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category-icon span:hover svg' => 'fill: {{VALUE}}; color: {{VALUE}}; border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -387,7 +402,7 @@ class Dynamic_Course_Category extends Widget_Base
 				'label' => __('Background Color', 'omexer-insight'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon span:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category-icon span:hover' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -396,7 +411,7 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'cat_hover_icon_border',
-				'selector' => '{{WRAPPER}} .course-category-icon span:hover',
+				'selector' => '{{WRAPPER}} .dynamic-course-category-icon span:hover',
 				'separator' => 'before',
 			]
 		);
@@ -408,7 +423,7 @@ class Dynamic_Course_Category extends Widget_Base
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -417,7 +432,7 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'cat_icon_hover_box_shadow',
-				'selector' => '{{WRAPPER}} .course-category-icon span:hover',
+				'selector' => '{{WRAPPER}} .dynamic-course-category-icon span:hover',
 			]
 		);
 
@@ -455,8 +470,8 @@ class Dynamic_Course_Category extends Widget_Base
 					]
 				],
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box.top' => 'text-align: {{VALUE}};',
-					'{{WRAPPER}} .course-category-icon-box-content' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category.top' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category-content' => 'text-align: {{VALUE}};',
 				],
 				'default' => 'left',
 			]
@@ -474,7 +489,7 @@ class Dynamic_Course_Category extends Widget_Base
 				],
 				'default' => 'flex-start',
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box' => 'align-items: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category' => 'align-items: {{VALUE}};',
 				],
 			]
 		);
@@ -500,7 +515,7 @@ class Dynamic_Course_Category extends Widget_Base
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box h4' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .dynamic-course-category h4' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -512,8 +527,8 @@ class Dynamic_Course_Category extends Widget_Base
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box h4' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .course-category-icon-box h4 a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category h4' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category h4 a' => 'color: {{VALUE}};',
 				]
 			]
 		);
@@ -525,8 +540,8 @@ class Dynamic_Course_Category extends Widget_Base
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box h4:hover' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .course-category-icon-box h4 a:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category h4:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category h4 a:hover' => 'color: {{VALUE}};',
 				]
 			]
 		);
@@ -535,14 +550,14 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'cat_title_typography',
-				'selector' => '{{WRAPPER}} .course-category-icon-box h4, {{WRAPPER}} .course-category-icon-box h4 a',
+				'selector' => '{{WRAPPER}} .dynamic-course-category h4, {{WRAPPER}} .dynamic-course-category h4 a',
 			]
 		);
 
 		$this->add_control(
-			'cat_desc_style',
+			'cat_number_style',
 			[
-				'label' => __('Description', 'omexer-insight'),
+				'label' => __('Course Number', 'omexer-insight'),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -555,7 +570,7 @@ class Dynamic_Course_Category extends Widget_Base
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .course-category-icon-box p' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .dynamic-course-category p' => 'color: {{VALUE}};',
 				]
 			]
 		);
@@ -564,7 +579,7 @@ class Dynamic_Course_Category extends Widget_Base
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'cat_desc_typography',
-				'selector' => '{{WRAPPER}} .course-category-icon-box p',
+				'selector' => '{{WRAPPER}} .dynamic-course-category p',
 			]
 		);
 
@@ -589,39 +604,41 @@ class Dynamic_Course_Category extends Widget_Base
 		return $cats;
 	}
 
+	protected function get_course_category_name($slug)
+	{
+		$term = get_term_by('slug', $slug, 'course-category');
+		if ($term && !is_wp_error($term)) {
+			return $term->name;
+		}
+		return '';
+	}
+
+	protected function get_course_category_post_count($slug)
+	{
+		$term = get_term_by('slug', $slug, 'course-category');
+		if ($term && !is_wp_error($term)) {
+			return $term->count;
+		}
+		return 0;
+	}
+
+	protected function get_course_category_url($slug)
+	{
+		$term = get_term_by('slug', $slug, 'course-category');
+		if ($term && !is_wp_error($term)) {
+			$term_link = get_term_link($term);
+			if (!is_wp_error($term_link)) {
+				return $term_link;
+			}
+		}
+		return '';
+	}
+
 	protected function render()
 	{
 		$settings = $this->get_settings_for_display();
 		$course_category = $settings['course_category'];
 
-		function get_course_category_name($slug)
-		{
-			$term = get_term_by('slug', $slug, 'course-category');
-			if ($term && !is_wp_error($term)) {
-				return $term->name;
-			}
-			return '';
-		}
-
-		function get_course_category_post_count($slug)
-		{
-			$term = get_term_by('slug', $slug, 'course-category');
-			if ($term && !is_wp_error($term)) {
-				return $term->count;
-			}
-			return 0;
-		}
-		function get_course_category_url($slug)
-		{
-			$term = get_term_by('slug', $slug, 'course-category');
-			if ($term && !is_wp_error($term)) {
-				$term_link = get_term_link($term);
-				if (!is_wp_error($term_link)) {
-					return $term_link;
-				}
-			}
-			return '';
-		}
 ?>
 		<?php if (!empty($course_category)) : ?>
 			<div class="dynamic-course-category <?php echo esc_attr($settings['cat_icon_position']); ?>">
@@ -632,9 +649,20 @@ class Dynamic_Course_Category extends Widget_Base
 				<?php endif; ?>
 
 				<div class="dynamic-course-category-content">
-					<h4><a href="<?php echo esc_url(get_course_category_url($course_category)); ?>"><?php echo esc_html(get_course_category_name($course_category)); ?></a></h4>
-					<p><?php echo esc_html(get_course_category_post_count($course_category)); ?></p>
+					<h4><a href="<?php echo esc_url($this->get_course_category_url($course_category)); ?>"><?php echo esc_html($this->get_course_category_name($course_category)); ?></a></h4>
+					<p>
+						<?php echo esc_html($this->get_course_category_post_count($course_category)); ?>
+						<?php if($settings['label_switcher'] == 'yes'):?>
+							<span class="label-text">
+								<?php echo esc_html__($settings['label_text'], 'omexer-insight');?>
+							</span>
+						<?php endif;?>
+					</p>
 				</div>
+			</div>
+		<?php else : ?>
+			<div class="dynamic-course-category-warning">
+				<?php _e('Please, select a category', 'omexer-insight'); ?>
 			</div>
 		<?php endif; ?>
 <?php

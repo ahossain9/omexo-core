@@ -114,9 +114,9 @@ class Text_Scroller extends Widget_Base
 		$this->add_control(
 			'animation_speed',
 			[
-				'label' => __('Scroll Speed', 'omexer-insight'),
+				'label' => __('Scroll Speed ( Second )', 'omexer-insight'),
 				'type' => Controls_Manager::NUMBER,
-				'default' => 15,
+				'default' => 20,
 			]
 		);
 		$this->end_controls_section();
