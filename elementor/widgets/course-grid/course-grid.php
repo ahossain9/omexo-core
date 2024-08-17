@@ -26,7 +26,7 @@ class Course_Grid extends Widget_Base
 
     public function get_title()
     {
-        return __('Course Grid', 'omexer-insight');
+        return __('Courses', 'omexer-insight');
     }
 
     public function get_icon()
@@ -89,7 +89,7 @@ class Course_Grid extends Widget_Base
                 ],
                 'default' => '4',
                 'condition' => [
-                    'layout_style' => ['layout-one', 'layout-two'],
+                    'layout_style' => ['layout-one', 'layout-two', 'layout-four'],
                 ]
             ]
         );
@@ -220,8 +220,7 @@ class Course_Grid extends Widget_Base
                 'default' => 'Enroll',
                 'condition' => [
                     'course_enroll' => 'yes',
-                    'layout_style' => 'layout-two',
-                    'layout_style' => 'layout-three'
+                    'layout_style' => ['layout-two', 'layout-three']
                 ]
             ]
         );
@@ -240,7 +239,6 @@ class Course_Grid extends Widget_Base
                 ]
             ]
         );
-
         $this->add_control(
             'category_switcher',
             [
@@ -251,7 +249,22 @@ class Course_Grid extends Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => [
-                    'layout_style' => 'layout-two'
+                    'layout_style' => 'layout-four'
+                ]
+            ]
+        );
+        $this->add_control(
+            'category_all_switcher',
+            [
+                'label' => __('All Category', 'omexer-insight'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'omexer-insight'),
+                'label_off' => __('Hide', 'omexer-insight'),
+                'return_value' => 'yes',
+                'default' => 'no',
+                'condition' => [
+                    'layout_style'  => 'layout-four',
+                    'category_switcher' => 'yes'
                 ]
             ]
         );
@@ -655,7 +668,7 @@ class Course_Grid extends Widget_Base
             [
                 'name' => 'course_duration_typography',
                 'label' => __('Typography', 'omexer-insight'),
-                'selector' => '{{WRAPPER}} .course-card.layout-two .course-duration',
+                'selector' => '{{WRAPPER}} .course-card.layout-two .course-duration span',
                 'condition' => [
                     'course_duration_switcher' => 'yes',
                     'layout_style' => 'layout-two'
@@ -1087,7 +1100,7 @@ class Course_Grid extends Widget_Base
                 'label' => __('Color', 'omexer-insight'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}  .course-content-footer li' => 'color: {{VALUE}}'
+                    '{{WRAPPER}}  .course-content-footer li, .course-content-footer li span' => 'color: {{VALUE}}'
                 ],
             ]
         );
@@ -1220,10 +1233,10 @@ class Course_Grid extends Widget_Base
                                         <div class="course-content-footer">
                                             <ul>
                                                 <?php if ('yes' == $settings['course_duration_switcher']) : ?>
-                                                    <li class="course-duration"><i class="fa fa-clock-o"></i> <?php echo $course_duration; ?></li>
+                                                    <li class="course-duration"><i class="fa-regular fa-clock"></i> <?php echo $course_duration; ?></li>
                                                 <?php endif; ?>
                                                 <?php if ('yes' == $settings['course_enroll']) : ?>
-                                                    <li class="course-user"><i class="fa fa-user-o"></i> <?php echo $course_students; ?></li>
+                                                    <li class="course-user"><i class="fa-regular fa-user"></i> <?php echo $course_students; ?></li>
                                                 <?php endif; ?>
                                             </ul>
                                         </div>
@@ -1248,21 +1261,8 @@ class Course_Grid extends Widget_Base
                                     <?php endif; ?>
                                 </div>
                                 <div class="course-content">
-                                    <?php if (!empty($course_categories) && is_array($course_categories) && count($course_categories) && ($settings['category_switcher'] == 'yes')) : ?>
-                                        <div class="course-categories">
-                                            <?php
-                                            $category_links = array();
-                                            foreach ($course_categories as $course_category) :
-                                                $category_name    = $course_category->name;
-                                                $category_link    = get_term_link($course_category->term_id);
-                                                $category_links[] = wp_sprintf('<a href="%1$s">%2$s</a>', esc_url($category_link), esc_html($category_name));
-                                            endforeach;
-                                            echo implode(' ', $category_links); //phpcs:ignore --contain safe data
-                                            ?>
-                                        </div>
-                                    <?php endif; ?>
                                     <?php if ('yes' == $settings['course_duration_switcher']) : ?>
-                                        <span class="course-duration"><i class="fa fa-clock-o"></i> <?php echo $course_duration; ?></span>
+                                        <span class="course-duration"><i class="fa-regular fa-clock"></i> <?php echo $course_duration; ?></span>
                                     <?php endif; ?>
                                     <div class="course-title">
                                         <h3><a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_title(); ?></a></h3>
@@ -1298,7 +1298,7 @@ class Course_Grid extends Widget_Base
                                                 </span>
                                             <?php endif; ?>
                                             <?php if ('yes' == $settings['course_enroll']) : ?>
-                                                <span class="course-user"><i class="fa fa-user-o"></i> <?php echo $course_students; ?>
+                                                <span class="course-user"><i class="fa-regular fa-user"></i> <?php echo $course_students; ?>
                                                     <?php if (!empty($settings['course_enroll_label'])) : ?>
                                                         <span class="enrolled-label"> <?php echo esc_html__($settings['course_enroll_label'], 'omexer-insight'); ?></span>
                                                     <?php endif; ?>
@@ -1310,7 +1310,7 @@ class Course_Grid extends Widget_Base
                             </div>
                         </div>
                     <?php endif; ?>
-                    <!-- Start Layout Two -->
+                    <!-- End Layout Two -->
                     <!-- Start Layout Three -->
                     <?php if ($settings['layout_style'] == 'layout-three') : ?>
                         <div class="col-lg-6 col-md-12 col-sm-12">
@@ -1359,7 +1359,7 @@ class Course_Grid extends Widget_Base
                                                     </span>
                                                 <?php endif; ?>
                                                 <?php if ('yes' == $settings['course_enroll']) : ?>
-                                                    <span class="course-user"><i class="fa fa-user-o"></i> <?php echo $course_students; ?>
+                                                    <span class="course-user"><i class="fa-regular fa-user"></i> <?php echo $course_students; ?>
                                                         <?php if (!empty($settings['course_enroll_label'])) : ?>
                                                             <span class="enrolled-label"> <?php echo esc_html__($settings['course_enroll_label'], 'omexer-insight'); ?></span>
                                                         <?php endif; ?>
@@ -1372,7 +1372,95 @@ class Course_Grid extends Widget_Base
                             </div>
                         </div>
                     <?php endif; ?>
+                    <!-- End Layout Three -->
                     <!-- Start Layout Three -->
+                    <?php if ($settings['layout_style'] == 'layout-four') : ?>
+                        <div class="col-lg-<?php echo esc_attr($settings['layout_columns']); ?> col-sm-6">
+                            <div class="course-card layout-four course-card-<?php echo esc_attr(get_the_ID()); ?>">
+                                <div class="course-card-inner">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <div class="course-thumbnail">
+                                            <a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_post_thumbnail(); ?></a>
+                                            <?php if (!empty($course_categories) && is_array($course_categories) && count($course_categories) && ($settings['category_switcher'] == 'yes')) : ?>
+                                                <?php if ($settings['category_all_switcher'] !== 'yes') : ?>
+                                                    <div class="course-categories">
+                                                        <?php
+                                                        // Get the first category from the array
+                                                        $course_category = reset($course_categories);
+
+                                                        if ($course_category) :
+                                                            $category_name = $course_category->name;
+                                                            $category_link = get_term_link($course_category->term_id);
+                                                            // Output the first category link
+                                                            printf('<a href="%1$s">%2$s</a>', esc_url($category_link), esc_html($category_name));
+                                                        endif;
+                                                        ?>
+                                                    </div>
+                                                <?php else : ?>
+                                                    <div class="course-categories">
+                                                        <?php
+                                                        $category_links = array();
+                                                        foreach ($course_categories as $course_category) :
+                                                            $category_name    = $course_category->name;
+                                                            $category_link    = get_term_link($course_category->term_id);
+                                                            $category_links[] = wp_sprintf('<a href="%1$s">%2$s</a>', esc_url($category_link), esc_html($category_name));
+                                                        endforeach;
+                                                        echo implode(' ', $category_links); //phpcs:ignore --contain safe data
+                                                        ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="course-content">
+                                        <div class="course-title">
+                                            <h3><a href="<?php echo esc_attr(get_the_permalink()); ?>"><?php the_title(); ?></a></h3>
+                                        </div>
+                                        <?php if ('yes' == $settings['course_rating_switcher']) : ?>
+                                            <div class="course-rating">
+                                                <?php
+                                                tutor_utils()->star_rating_generator($course_rating->rating_avg);
+                                                ?>
+                                                <span class="course-rating-count">
+                                                    <?php
+                                                    echo '<span>(' . apply_filters('tutor_course_rating_count', $course_rating->rating_count) . ' <span>' . $review_count . ')</span></span>';
+                                                    ?>
+                                                </span>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ('yes' == $settings['course_pricing_switcher'] || 'yes' == $settings['course_enroll']) : ?>
+                                            <div class="course-content-footer">
+                                                <?php if ('yes' == $settings['course_pricing_switcher']) : ?>
+                                                    <span class="course-price">
+                                                        <?php
+                                                        $course_id = get_the_ID();
+                                                        $price_html = '<span>' . __('Free', 'omexer-insignt') . '</span>';
+                                                        if (tutor_utils()->is_course_purchasable()) {
+                                                            $product_id = tutor_utils()->get_course_product_id($course_id);
+                                                            $product    = wc_get_product($product_id);
+                                                            if ($product) {
+                                                                $price_html = '<span> ' . $product->get_price_html() . '</span> ';
+                                                            }
+                                                        }
+                                                        echo $price_html;
+                                                        ?>
+                                                    </span>
+                                                <?php endif; ?>
+                                                <?php if ('yes' == $settings['course_enroll']) : ?>
+                                                    <span class="course-user"><i class="fa-regular fa-user"></i> <?php echo $course_students; ?>
+                                                        <?php if (!empty($settings['course_enroll_label'])) : ?>
+                                                            <span class="enrolled-label"> <?php echo esc_html__($settings['course_enroll_label'], 'omexer-insight'); ?></span>
+                                                        <?php endif; ?>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <!-- End Layout Three -->
                 <?php
                 endwhile;
                 wp_reset_postdata();

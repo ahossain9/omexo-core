@@ -71,7 +71,7 @@ class Testimonial extends Widget_Base {
 				'label' => __( 'Icon', 'omexer-insight' ),
 				'type' => Controls_Manager::ICONS,
 				'default' => [
-					'value' => 'fas fa-quote-right',
+					'value' => 'fa fa-quote-right',
 					'library' => 'solid',
 				],
 				'condition' => [
@@ -739,17 +739,17 @@ class Testimonial extends Widget_Base {
 						$stars_html = '';
 			
 						if ( $rating_data == 5 ) {
-							$stars_html .= '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>';
+							$stars_html .= '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
 						} elseif ( $rating_data == 4.5 ) {
-							$stars_html .= '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>';
+							$stars_html .= '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-alt"></i>';
 						} elseif ( $rating_data == 4 ) {
-							$stars_html .= '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>';
+							$stars_html .= '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
 						} elseif ( $rating_data == 3.5 ) {
-							$stars_html .= '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>';
+							$stars_html .= '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-alt"></i><i class="fa fa-star"></i>';
 						} elseif ( $rating_data == 3 ) {
-							$stars_html .= '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+							$stars_html .= '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
 						} else {
-							$stars_html .= '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>';
+							$stars_html .= '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
 						}
 						echo $stars_html;
 						?>

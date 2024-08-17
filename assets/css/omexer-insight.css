@@ -208,6 +208,10 @@ input[type="submit"] {
 .content-footer .course-duration{
     margin-right: 100px;
 }
+.content-footer .course-duration span{
+    font-weight: 400;
+    color: #696969;
+}
 .course-content-footer {
     border-top: 1px solid #e6f0fa;
     padding-top: 20px;
@@ -239,18 +243,6 @@ input[type="submit"] {
     margin-bottom: 15px;
     display: inline-block;
 }
-.course-card.layout-two .course-categories a {
-    display: inline-block;
-    background-color: #FF630E;
-    border-radius: 6px;
-    color: #fff;
-    padding: 2px 15px;
-    margin-right: 5px;
-    font-size: 14px;
-}
-.course-card.layout-two .course-categories {
-    margin-bottom: 10px;
-}
 .course-card.layout-two .course-thumbnail a {
     display: block;
     overflow: hidden;
@@ -264,6 +256,9 @@ input[type="submit"] {
 }
 .course-card.layout-two .course-thumbnail img {
     transition: 0.5s;
+}
+.course-card.layout-two .course-duration span {
+    font-weight: 400;
 }
 /*----------------------------------------------------
    Course Grid Layout Three
@@ -281,6 +276,9 @@ input[type="submit"] {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.course-card.layout-three .course-thumbnail{
+    position: relative;
 }
 @media (max-width: 767px){
     .course-card.layout-three .course-card-inner {
