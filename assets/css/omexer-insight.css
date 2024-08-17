@@ -57,7 +57,7 @@ input[type="submit"] {
     font-weight: 500;
     margin-bottom: 10px;
     text-transform: uppercase;
-    color: #FF630E
+    color: var(--omexo-primary-color)
 }
 .slider-content h2 {
     font-size: 65px;
@@ -73,7 +73,7 @@ input[type="submit"] {
 
 .slider-btn a {
     display: inline-block;
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     margin: 30px 0 0;
     color: #fff;
     padding: 10px 30px 15px;
@@ -117,7 +117,7 @@ input[type="submit"] {
 }
 
 .slider.owl-carousel .owl-nav > div:hover {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     color: #fff;
 }
 
@@ -139,7 +139,7 @@ input[type="submit"] {
 }
 
 .slider .owl-dots .owl-dot.active {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
 }
 
 /*----------------------------------------------------
@@ -184,7 +184,7 @@ input[type="submit"] {
     background: transparent;
 }
 .course-price span {
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     font-weight: 700;
     font-size: 22px;
     display: inline-block;
@@ -200,7 +200,7 @@ input[type="submit"] {
     line-height: 36px;
 }
 .course-title a:hover{
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 .course-content-footer li{
     display: inline-block;
@@ -354,7 +354,7 @@ input[type="submit"] {
     font-size: 40px;
     line-height: 50px;
     font-weight: 700;
-    font-family: 'Urbanist', sans-serif;
+    font-family: var(--omexo-font-family);
     color: #130f40;
 }
 .scroller-content .scroller-icon {
@@ -417,7 +417,7 @@ input[type="submit"] {
     height: 50px;
     padding: 0 20px;
     border-radius: 4px;
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     color: #fff;
     font-size: 20px;
     margin-top: 5px;
@@ -457,13 +457,13 @@ input[type="submit"] {
     line-height: 80px;
     padding: 0 28px;
     background-color: #fff;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     position: relative;
     border-radius: 4px
 }
 
 .video-popup-wrap a:hover {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     color: #fff;
 }
 
@@ -631,7 +631,7 @@ input[type="submit"] {
 
 .webinar-meta li i {
     margin-right: 4px;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 
 .webinar-content h3 {
@@ -648,7 +648,7 @@ input[type="submit"] {
 }
 
 .webinar-btn a{
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 
 @media (max-width: 1024px) {
@@ -689,7 +689,7 @@ input[type="submit"] {
 
 .zoom-webinar-meta li i {
     margin-right: 4px;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 
 .zoom-webinar-content h3 {
@@ -706,7 +706,7 @@ input[type="submit"] {
 }
 
 .zoom-webinar-btn a{
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 
 /*----------------------------------------------------
@@ -799,7 +799,7 @@ input[type="submit"] {
 }
 .dynamic-course-category-content a {
     color: #000;
-    font-family: 'Urbanist';
+    font-family: var(--omexo-font-family);
     font-weight: 700;
     font-size: 20px;
 }
@@ -839,12 +839,13 @@ input[type="submit"] {
 .mc4wp-form-fields{
     display: flex;
 }
-
 .mc4wp-form-fields p:first-child input,
 .mc4wp-form-fields label{
     display: block;
 }
-
+.mc4wp-form-fields input[type="submit"]{
+    background-color: var(--omexo-primary-color);
+}
 @media (max-width: 767px){
     .mc4wp-form-fields{
         display: block;
@@ -1035,7 +1036,7 @@ input[type="submit"] {
 }
 
 .dual-btn-wrapper .dual-btn a{
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     padding: 10px 20px;
     border-radius: 10px;
     color: #fff;
@@ -1169,7 +1170,7 @@ input[type="submit"] {
     background-color: #e9ecf0;
     -webkit-box-shadow: 0 2px 6px -2px #989898;
     box-shadow: 0 2px 6px -2px #989898;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     text-align: center;
     font-size: 46px
 }
@@ -1205,7 +1206,7 @@ input[type="submit"] {
     max-width: 200%;
     border: 3px solid #fff;
     border-radius: 20px;
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     color: #fff;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1221,7 +1222,7 @@ input[type="submit"] {
 
 .steps-title a {
     display: block;
-    color: #FF630E
+    color: var(--omexo-primary-color)
 }
 
 .steps-title a:hover {
@@ -1471,7 +1472,7 @@ input[type="submit"] {
 
 .testi-quote i {
     display: inline-block;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     font-size: 50px;
 }
 
@@ -1602,12 +1603,12 @@ input[type="submit"] {
 }
 
 .testi-carousel .owl-dot.active {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
 }
 
 .testi-carousel.owl-carousel .owl-nav > div {
     font-size: 30px;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -1653,7 +1654,7 @@ input[type="submit"] {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #fff;
+    background-color: var(--omexo-primary-color);
     width: 80%;
     margin: 0 auto;
     padding: 10px 20px;
@@ -1666,7 +1667,9 @@ input[type="submit"] {
     visibility: hidden;
     opacity: 0;
 }
-
+.member-links a{
+    color:var(--omexo-heading-color);
+}
 .member-wrap:hover .member-links{
     visibility: visible;
     opacity: 1;
@@ -1703,7 +1706,7 @@ input[type="submit"] {
 }
 
 .tesimonial-quote i {
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     font-size: 40px;
     margin: 0 0 20px;
 }
@@ -1971,7 +1974,7 @@ input[type="submit"] {
     height: 30px;
     font-size: 15px;
     font-weight: 600;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     line-height: 30px;
     content: '\f067';
     font-family: 'Font Awesome 5 Free';
@@ -2022,11 +2025,11 @@ input[type="submit"] {
 }
 .omexo-nav-menu-wrap ul .sub-menu .current-menu-item > a,
 .omexo-nav-menu-wrap ul .sub-menu .current-menu-ancestor > a {
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 .omexo-nav-menu-wrap .sub-menu,
 .omexo-nav-menu-wrap ul.children {
-    border-top: 2px solid #FF630E;
+    border-top: 2px solid var(--omexo-primary-color);
     position: absolute;
     z-index: 10;
     left: 0;
@@ -2039,7 +2042,7 @@ input[type="submit"] {
     top: 100%;
     -webkit-box-shadow: 0 0 30px rgba(51, 51, 51, 0.1);
     box-shadow: 0 0 30px rgba(51, 51, 51, 0.1);
-    border-color: #FF630E;
+    border-color: var(--omexo-primary-color);
     background-color: #fff;
     transform: scaleY(0);
     transform-origin: 0 0 0;
@@ -2171,7 +2174,7 @@ input[type="submit"] {
     position: relative;
 }
 .omexer-insight-mini-cart .cart-icon .cart-total-number {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     position: absolute;
     bottom: 17px;
     width: 24px;
