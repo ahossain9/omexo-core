@@ -21,7 +21,7 @@
             var tablet_display_items = parseInt(settings['tablet_display_items']) || 2;
             var mobile_display_items = parseInt(settings['mobile_display_items']) || 1;
             slider_elem.owlCarousel({
-                navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
+                navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
                 dots: dots,
                 loop: true,
                 nav: arrows,

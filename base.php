@@ -92,12 +92,13 @@ class Plugin {
      */
     public function init_widgets() {
 
-        $LMSwidget = [
+        $TutorLMSwidget = [
             'course-grid',
             'course-carousel',
             'category-image-box',
             'category-icon-box',
             'course-search',
+            'dynamic-course-category',
         ];
 
         $widgets = [
@@ -116,6 +117,8 @@ class Plugin {
             'skill-bar',
             'accordian',
             'step-flow',
+            'spinning-image',
+            'text-scroller',
             'nav-menu',
             'site-logo',
             'mini-cart',
@@ -123,7 +126,7 @@ class Plugin {
         ];
 
         if ( function_exists('tutor') ) {
-            $widgets = array_merge( $LMSwidget, $widgets);
+            $widgets = array_merge($TutorLMSwidget, $widgets);
         }
 
         foreach ( $widgets as $widget ) {

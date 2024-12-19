@@ -57,7 +57,7 @@ input[type="submit"] {
     font-weight: 500;
     margin-bottom: 10px;
     text-transform: uppercase;
-    color: #FF630E
+    color: var(--omexo-primary-color)
 }
 .slider-content h2 {
     font-size: 65px;
@@ -73,7 +73,7 @@ input[type="submit"] {
 
 .slider-btn a {
     display: inline-block;
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     margin: 30px 0 0;
     color: #fff;
     padding: 10px 30px 15px;
@@ -117,7 +117,7 @@ input[type="submit"] {
 }
 
 .slider.owl-carousel .owl-nav > div:hover {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     color: #fff;
 }
 
@@ -139,11 +139,11 @@ input[type="submit"] {
 }
 
 .slider .owl-dots .owl-dot.active {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
 }
 
 /*----------------------------------------------------
-   Course Grid
+   Course Grid Layout One
 ------------------------------------------------------*/
 .course-card {
     box-shadow: 0 0 30px rgba(51,51,51,0.1);
@@ -184,7 +184,7 @@ input[type="submit"] {
     background: transparent;
 }
 .course-price span {
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     font-weight: 700;
     font-size: 22px;
     display: inline-block;
@@ -200,13 +200,17 @@ input[type="submit"] {
     line-height: 36px;
 }
 .course-title a:hover{
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 .course-content-footer li{
     display: inline-block;
 }
 .content-footer .course-duration{
     margin-right: 100px;
+}
+.content-footer .course-duration span{
+    font-weight: 400;
+    color: #696969;
 }
 .course-content-footer {
     border-top: 1px solid #e6f0fa;
@@ -232,7 +236,142 @@ input[type="submit"] {
     font-size: 17px;
     line-height: 30px;
 }
-
+/*----------------------------------------------------
+   Course Grid Layout Two
+------------------------------------------------------*/
+.course-card.layout-two .course-duration {
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.course-card.layout-two .course-thumbnail a {
+    display: block;
+    overflow: hidden;
+}
+.course-card.layout-two:hover .course-thumbnail img {
+    transform: scale(1.1);
+}
+.course-card.layout-two .course-thumbnail {
+    overflow: hidden;
+    transition: 0.5s;
+}
+.course-card.layout-two .course-thumbnail img {
+    transition: 0.5s;
+}
+.course-card.layout-two .course-duration span {
+    font-weight: 400;
+}
+/*----------------------------------------------------
+   Course Grid Layout Three
+------------------------------------------------------*/
+.course-card.layout-three .course-card-inner {
+    display: flex;
+    align-items: center;
+}
+.course-card.layout-three .course-thumbnail a {
+    width: 250px;
+    height: 250px;
+    display: block;
+}
+.course-card.layout-three .course-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.course-card.layout-three .course-thumbnail{
+    position: relative;
+}
+@media (max-width: 767px){
+    .course-card.layout-three .course-card-inner {
+        display: inline-block;
+    }
+    .course-card.layout-three .course-thumbnail a {
+        width: 100%;
+        height: auto;
+    }
+}
+/*----------------------------------------------------
+   Spinning Image
+------------------------------------------------------*/
+.spinning-image-wrap {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+.spinning-image-wrap img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    animation: spinner 4s infinite linear;
+}
+.spinning-image-wrap span {
+    width: 30px;
+    height: 30px;
+    background: red;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 0 auto;
+    top: 50%;
+    bottom: 0;
+    transform: translateY(-50%);
+    border-radius: 100%;
+}
+@keyframes spinner {
+    to {
+        transform: rotateZ(360deg)
+    }
+}
+/*----------------------------------------------------
+   Text Scroller
+------------------------------------------------------*/
+.text-scroller-wrap {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+.text-scroller-inner {
+    display: flex;
+    align-items: center;
+    animation: marquee 10s linear infinite;
+}
+.scroller-content {
+    display: flex;
+    align-items: center;
+    margin: 0 30px;
+}
+.scroller-content .scroller-text {
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: 700;
+    font-family: var(--omexo-font-family);
+    color: #130f40;
+}
+.scroller-content .scroller-icon {
+    font-size: 20px;
+    margin-left: 55px;
+}
+.scroller-content .scroller-icon svg{
+    height: 50px;
+}
+@keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+}
 /*----------------------------------------------------
    Course Carousel
 ------------------------------------------------------*/
@@ -278,7 +417,7 @@ input[type="submit"] {
     height: 50px;
     padding: 0 20px;
     border-radius: 4px;
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     color: #fff;
     font-size: 20px;
     margin-top: 5px;
@@ -318,13 +457,13 @@ input[type="submit"] {
     line-height: 80px;
     padding: 0 28px;
     background-color: #fff;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     position: relative;
     border-radius: 4px
 }
 
 .video-popup-wrap a:hover {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     color: #fff;
 }
 
@@ -485,10 +624,6 @@ input[type="submit"] {
     flex-grow: 1;
 }
 
-.course-category-icon-box p{
-	margin: 0
-}
-
 .webinar-meta li {
     display: inline-block;
     margin-right: 20px;
@@ -496,7 +631,7 @@ input[type="submit"] {
 
 .webinar-meta li i {
     margin-right: 4px;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 
 .webinar-content h3 {
@@ -513,7 +648,7 @@ input[type="submit"] {
 }
 
 .webinar-btn a{
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 
 @media (max-width: 1024px) {
@@ -554,7 +689,7 @@ input[type="submit"] {
 
 .zoom-webinar-meta li i {
     margin-right: 4px;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 
 .zoom-webinar-content h3 {
@@ -571,7 +706,7 @@ input[type="submit"] {
 }
 
 .zoom-webinar-btn a{
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 
 /*----------------------------------------------------
@@ -601,6 +736,9 @@ input[type="submit"] {
     display: flex;
 }
 
+.course-category-icon-box p{
+	margin: 0
+}
 .course-category-icon span{
     transition: 0.5s;
     -webkit-transition: 0.5s;
@@ -639,19 +777,75 @@ input[type="submit"] {
 .course-category-img img{
     margin-bottom: 20px;
 }
-
+/*----------------------------------------------------
+   Dynamic Course Category
+------------------------------------------------------*/
+.dynamic-course-category{
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 20px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.dynamic-course-category-content{
+    width: 100%;
+}
+.dynamic-course-category-content a {
+    color: #000;
+    font-family: var(--omexo-font-family);
+    font-weight: 700;
+    font-size: 20px;
+}
+.dynamic-course-category.left {
+    display: flex;
+}
+.dynamic-course-category p{
+	margin: 0
+}
+.dynamic-course-category-icon span{
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    display: inline-block;
+}
+.dynamic-course-category-icon svg{
+    width: 50px;
+    height: auto;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.dynamic-course-category-warning {
+    border: 1px solid #f3b796;
+    border-radius: 5px;
+    padding: 30px 10px;
+    text-align: center;
+    color: #ff630e;
+}
 /*----------------------------------------------------
    Mailchimp for WordPress
 ------------------------------------------------------*/
 .mc4wp-form-fields{
     display: flex;
 }
-
 .mc4wp-form-fields p:first-child input,
 .mc4wp-form-fields label{
     display: block;
 }
-
+.mc4wp-form-fields input[type="submit"]{
+    background-color: var(--omexo-primary-color);
+}
 @media (max-width: 767px){
     .mc4wp-form-fields{
         display: block;
@@ -842,7 +1036,7 @@ input[type="submit"] {
 }
 
 .dual-btn-wrapper .dual-btn a{
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     padding: 10px 20px;
     border-radius: 10px;
     color: #fff;
@@ -976,7 +1170,7 @@ input[type="submit"] {
     background-color: #e9ecf0;
     -webkit-box-shadow: 0 2px 6px -2px #989898;
     box-shadow: 0 2px 6px -2px #989898;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     text-align: center;
     font-size: 46px
 }
@@ -1012,7 +1206,7 @@ input[type="submit"] {
     max-width: 200%;
     border: 3px solid #fff;
     border-radius: 20px;
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     color: #fff;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1028,7 +1222,7 @@ input[type="submit"] {
 
 .steps-title a {
     display: block;
-    color: #FF630E
+    color: var(--omexo-primary-color)
 }
 
 .steps-title a:hover {
@@ -1278,7 +1472,7 @@ input[type="submit"] {
 
 .testi-quote i {
     display: inline-block;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     font-size: 50px;
 }
 
@@ -1409,12 +1603,12 @@ input[type="submit"] {
 }
 
 .testi-carousel .owl-dot.active {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
 }
 
 .testi-carousel.owl-carousel .owl-nav > div {
     font-size: 30px;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -1460,7 +1654,7 @@ input[type="submit"] {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #fff;
+    background-color: var(--omexo-primary-color);
     width: 80%;
     margin: 0 auto;
     padding: 10px 20px;
@@ -1473,7 +1667,9 @@ input[type="submit"] {
     visibility: hidden;
     opacity: 0;
 }
-
+.member-links a{
+    color:var(--omexo-heading-color);
+}
 .member-wrap:hover .member-links{
     visibility: visible;
     opacity: 1;
@@ -1510,7 +1706,7 @@ input[type="submit"] {
 }
 
 .tesimonial-quote i {
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     font-size: 40px;
     margin: 0 0 20px;
 }
@@ -1778,7 +1974,7 @@ input[type="submit"] {
     height: 30px;
     font-size: 15px;
     font-weight: 600;
-    color: #FF630E;
+    color: var(--omexo-primary-color);
     line-height: 30px;
     content: '\f067';
     font-family: 'Font Awesome 5 Free';
@@ -1829,11 +2025,11 @@ input[type="submit"] {
 }
 .omexo-nav-menu-wrap ul .sub-menu .current-menu-item > a,
 .omexo-nav-menu-wrap ul .sub-menu .current-menu-ancestor > a {
-    color: #FF630E;
+    color: var(--omexo-primary-color);
 }
 .omexo-nav-menu-wrap .sub-menu,
 .omexo-nav-menu-wrap ul.children {
-    border-top: 2px solid #FF630E;
+    border-top: 2px solid var(--omexo-primary-color);
     position: absolute;
     z-index: 10;
     left: 0;
@@ -1846,7 +2042,7 @@ input[type="submit"] {
     top: 100%;
     -webkit-box-shadow: 0 0 30px rgba(51, 51, 51, 0.1);
     box-shadow: 0 0 30px rgba(51, 51, 51, 0.1);
-    border-color: #FF630E;
+    border-color: var(--omexo-primary-color);
     background-color: #fff;
     transform: scaleY(0);
     transform-origin: 0 0 0;
@@ -1978,7 +2174,7 @@ input[type="submit"] {
     position: relative;
 }
 .omexer-insight-mini-cart .cart-icon .cart-total-number {
-    background-color: #FF630E;
+    background-color: var(--omexo-primary-color);
     position: absolute;
     bottom: 17px;
     width: 24px;

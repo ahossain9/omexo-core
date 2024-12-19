@@ -54,13 +54,6 @@ class Assets {
     // Register Styles
     public function register_frontend_styles() {  
         wp_register_style(
-            'font-awesome',
-            OMEXER_INSIGHT_ASSETS . 'css/font-awesome.min.css',
-            null,
-            OMEXER_INSIGHT_VERSION
-        );
-
-        wp_register_style(
             'owl-carousel',
             OMEXER_INSIGHT_ASSETS . 'css/owl.carousel.min.css',
             null,
@@ -93,17 +86,14 @@ class Assets {
             null,
             OMEXER_INSIGHT_VERSION
         );
-
 	}
     
     public function enqueue_frontend_styles() {
-		wp_enqueue_style( 'font-awesome' );
 		wp_enqueue_style( 'owl-carousel' );
 		wp_enqueue_style( 'magnific-popup' );
 		wp_enqueue_style( 'animate' );
 		wp_enqueue_style( 'omexer-insight-icons' );
 		wp_enqueue_style( 'omexer-insight' );
-
 	}
     
     // Register Scripts
