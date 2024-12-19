@@ -725,7 +725,6 @@ class Team_Member extends Widget_Base {
 			[
 				'name' => 'job_title_typography',
 				'selector' => '{{WRAPPER}} .member-position',
-				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
