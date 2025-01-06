@@ -9,15 +9,12 @@ namespace Omexer_Insight\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Repeater;
-use Elementor\Core\Schemes\Typography;
 use Elementor\Utils;
-use Elementor\Control_Media;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Happy_Addons\Elementor\Traits\Button_Renderer;
 
 defined( 'ABSPATH' ) || die();
 
@@ -773,7 +770,6 @@ class Team_Member extends Widget_Base {
 			[
 				'name' => 'bio_typography',
 				'selector' => '{{WRAPPER}} .member-bio',
-				'scheme' => Typography::TYPOGRAPHY_3,
 			]
 		);
 
